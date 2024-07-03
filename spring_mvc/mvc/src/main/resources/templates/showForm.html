@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+    <style>
+        .error {color:red}
+    </style>
+</head>
+<body>
+<p>Hii....<br>Please fill this form to get registered yourself. <br> </p>
+
+<!-- action refer to follow which method in java, name variable in form store value of field in form -->
+<!-- th:object -- store the result now from form fields and work  as model-->
+<form th:action="@{/formDetails}" th:object="${student}" method="POST">
+
+    First Name(*) : <input type="text" th:field = "*{fname}" placeholder="enter your first name">
+    <span th:if="${#fields.hasErrors('fname')}"
+          th:errors="*{fname}"
+          class="error"></span>
+
+    <br><br>
+    Last Name : <input type="text" th:field = "*{lname}" placeholder="enter your last name">
+    <br><br>
+    <!--Password : <input type="Password" name="" placeholder="enter your Password">
+    <br><br>
+    DOB : <input type="date" name="">
+    <br><br>-->
+    <!-- html way --input type="radio" name="a" style="width: 26px;"> male
+    <input type="radio" name="a" style="width: 26px;"> female
+    <br><br-->
+    <!-- spring way -->
+    Language :
+    <input type="radio" th:field = "*{language}" th:each = "tmp:${language}" th:value="${tmp}"
+           th:text="${tmp}" />
+    <br><br>
+
+    <!-- html way of display select style="width: 220px;">
+        <option>Select College</option>
+        <option>DAVV</option>
+        <option>RJIT</option>
+        <option>MITS</option>
+        <option>SGITS</option>
+    </select-->
+    <!-- now spring thymeleaf way -->
+
+    Country :
+    <select th:field = "*{country}">
+        <option th:each="tmp:${countries}" th:value="${tmp}" th:text="${tmp}" ></option>
+    </select>
+    <br><br>
+
+
+    <!--input type="checkbox" name="" style="width: 26px;"> 10th
+    <input type="checkbox" name="" style="width: 26px;"> 12th
+    <input type="checkbox" name="" style="width: 26px;"> B.Tech -- html way -->
+    Education :
+    <input type="checkbox" th:field="*{opSys}" th:each="tmp:${opsystem}" th:value="${tmp}" th:text="${tmp}"/>
+    <br><br>
+
+    <!--Address : <textarea style="width: 260px;"></textarea>
+    <br><br-->
+
+    mobile num : <input type="number" th:field="*{number}" placeholder="enter your phone number"/>
+    <span th:if="${#fields.hasErrors('number')}"
+          th:errors="*{number}"
+          class="error"></span>
+    <br><br>
+
+    Postal Code: <input type="text" th:field="*{postalCode}" />
+
+    <!-- Add error message (if present) -->
+    <span th:if="${#fields.hasErrors('postalCode')}"
+          th:errors="*{postalCode}"
+          class="error"></span>
+
+
+    <br><br>
+
+    <!--image upload : <input type="file" name="">
+    <br><br>-->
+    <br>
+    <input type="submit" name="" value="Sign Up" class="button">
+    </div>
+
+
+</form>
+</body>
+</html>

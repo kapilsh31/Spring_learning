@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Hello</title>
+</head>
+<body>
+<p style="font-size:30px;" th:text=" 'Time is ' + ${date} + 'Now, Tell me your name buddy ...' " />
+<form th:action="@{/displayHello}" method="get">
+    <!-- action refer to follow which method in java, name variable in form store value of field in form -->
+    <input type="text" name="fname" placeholder="name" />
+    <input type="submit">
+</form>
+</body>
+</html>
