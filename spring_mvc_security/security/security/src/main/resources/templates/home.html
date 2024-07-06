@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Homepage</title>
+</head>
+<body>
+<div class="container">
+    <h1 style="color: Grey; font-family: sans-serif; font-size: 15px; text-align:center">
+        KS Company</h1>
+    <hr>
+
+    <p style="color: Red; font-family: sans-serif; font-size: 50px; text-align:center">Welcome to KS Company</p>
+
+    <br><br>
+
+    <!-- display username and roles-->
+
+    <div style="background-color:grey ; color: White; font-family: sans-serif; font-size: 25px; text-align:left" >
+        Hiii.... : <span sec:authentication="principal.username" />
+        <br>
+        Your Roles are.... : <span sec:authentication="principal.authorities" />
+    </div>
+
+
+    <br><hr><br>
+
+    <!-- add link to only manager based on roles -->
+
+    <div sec:authorize="hasRole('MANAGER')">
+    <a th:href="@{/leaders}">Leadership meeting</a>
+    <p>Manager section</p>
+    </div>
+
+    <br>
+
+    <div sec:authorize="hasRole('ADMIN')">
+        <a th:href="@{/systems}">Admin page</a>
+        <p>Admin section</p>
+    </div>
+
+    <br>
+
+    <form action="#" th:action="@{/logout}" method="post">
+        <input type="submit" value="logout" />
+    </form>
+
+</div>
+</body>
+</html>
